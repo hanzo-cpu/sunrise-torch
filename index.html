@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Alarma Linterna — Sunrise</title>
+  <title>Alarma Linterna — Sunrise v2</title>
   <meta name="theme-color" content="#000000">
   <link rel="manifest" href="manifest.json">
   <link rel="stylesheet" href="styles.css">
@@ -11,31 +11,40 @@
 </head>
 <body>
   <header>
-    <h1>Alarma Linterna — Sunrise</h1>
-    <p class="sub">Android: linterna real si el navegador lo permite · iPhone: pantalla blanca + sonido (limitación de iOS)</p>
+    <h1>Alarma Linterna — Sunrise v2</h1>
+    <p class="sub">Android: linterna real si el navegador lo permite · iPhone: pantalla + audio (si tu modelo lo permite, también torch).</p>
   </header>
 
   <main>
     <section class="card">
-      <h2>1) Preparación</h2>
-      <ol>
-        <li>Instala como <strong>PWA</strong>: menú del navegador → <em>Añadir a pantalla de inicio</em>.</li>
-        <li>Pulsa <strong>Habilitar</strong> para conceder permisos (cámara/sonido) y mantener la pantalla activa.</li>
-        <li>Mantén la app <u>abierta</u> en primer plano a la hora de la alarma (limitación de la web móvil).</li>
-      </ol>
+      <h2>1) Permisos</h2>
+      <p>Instala como PWA y toca <strong>Habilitar</strong>. Mantén la app abierta (las webs móviles no ejecutan alarmas con la pantalla bloqueada).</p>
       <div class="row">
-        <button id="enableBtn">Habilitar permisos</button>
+        <button id="enableBtn">Habilitar</button>
+        <button id="fullscreenBtn" class="secondary">Pantalla completa</button>
         <span id="status" class="hint"></span>
       </div>
     </section>
 
     <section class="card">
-      <h2>2) Programa tu alarma</h2>
+      <h2>2) Configura</h2>
       <div class="row">
-        <label>Hora: <input id="alarmTime" type="time" value="05:00" required></label>
-        <label>Duración amanecer (min): <input id="duration" type="number" min="1" max="30" value="5"></label>
+        <label>Hora: <input id="alarmTime" type="time" required></label>
+        <label>Duración amanecer (min): <input id="duration" type="number" min="1" max="60" value="10"></label>
+        <label>Pre-amanecer (min): <input id="prewake" type="number" min="0" max="60" value="2"></label>
       </div>
       <div class="row">
+        <label class="checkbox"><input id="blackout" type="checkbox" checked> Pantalla negra hasta el pre-amanecer</label>
+      </div>
+      <div class="row">
+        <label class="file">
+          Tono (audio):
+          <input id="toneFile" type="file" accept="audio/*">
+        </label>
+        <button id="previewTone" class="secondary">Pre-escuchar tono</button>
+      </div>
+      <div class="row">
+        <button id="saveBtn">Guardar</button>
         <button id="scheduleBtn">Programar</button>
         <button id="cancelBtn" class="secondary">Cancelar</button>
       </div>
@@ -43,18 +52,19 @@
     </section>
 
     <section class="card">
-      <h2>3) Prueba rápida</h2>
+      <h2>3) Pruebas</h2>
       <div class="row">
         <button id="testLightBtn">Probar luz 5s</button>
-        <button id="testSoundBtn" class="secondary">Probar sonido</button>
+        <button id="testScreenBtn" class="secondary">Probar pantalla</button>
       </div>
     </section>
 
+    <section id="blackScreen" class="black hidden"></section>
     <section id="sunScreen" class="sun hidden"></section>
   </main>
 
   <footer>
-    <small>Esta es una demostración educativa. iOS no permite activar la linterna desde el navegador; se usa pantalla blanca + audio como alternativa.</small>
+    <small>v2: pantalla negra hasta pre-amanecer + tono personalizado. Nota: algunos iPhones permiten torch desde web si la cámara está activa.</small>
   </footer>
 </body>
 </html>
