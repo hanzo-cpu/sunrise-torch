@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Alarma Linterna — Sunrise</title>
+  <meta name="theme-color" content="#000000">
+  <link rel="manifest" href="manifest.json">
+  <link rel="stylesheet" href="styles.css">
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Alarma Linterna — Sunrise</h1>
+    <p class="sub">Android: linterna real si el navegador lo permite · iPhone: pantalla blanca + sonido (limitación de iOS)</p>
+  </header>
+
+  <main>
+    <section class="card">
+      <h2>1) Preparación</h2>
+      <ol>
+        <li>Instala como <strong>PWA</strong>: menú del navegador → <em>Añadir a pantalla de inicio</em>.</li>
+        <li>Pulsa <strong>Habilitar</strong> para conceder permisos (cámara/sonido) y mantener la pantalla activa.</li>
+        <li>Mantén la app <u>abierta</u> en primer plano a la hora de la alarma (limitación de la web móvil).</li>
+      </ol>
+      <div class="row">
+        <button id="enableBtn">Habilitar permisos</button>
+        <span id="status" class="hint"></span>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>2) Programa tu alarma</h2>
+      <div class="row">
+        <label>Hora: <input id="alarmTime" type="time" value="05:00" required></label>
+        <label>Duración amanecer (min): <input id="duration" type="number" min="1" max="30" value="5"></label>
+      </div>
+      <div class="row">
+        <button id="scheduleBtn">Programar</button>
+        <button id="cancelBtn" class="secondary">Cancelar</button>
+      </div>
+      <p id="countdown" class="hint"></p>
+    </section>
+
+    <section class="card">
+      <h2>3) Prueba rápida</h2>
+      <div class="row">
+        <button id="testLightBtn">Probar luz 5s</button>
+        <button id="testSoundBtn" class="secondary">Probar sonido</button>
+      </div>
+    </section>
+
+    <section id="sunScreen" class="sun hidden"></section>
+  </main>
+
+  <footer>
+    <small>Esta es una demostración educativa. iOS no permite activar la linterna desde el navegador; se usa pantalla blanca + audio como alternativa.</small>
+  </footer>
+</body>
+</html>
